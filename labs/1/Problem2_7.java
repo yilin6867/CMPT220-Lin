@@ -8,7 +8,7 @@ public class Problem2_7 {
 		int day = (minutes / 60) / 24;
 		int year = day / 365;
 		int days = day % 365;
-		System.out.println(minutes + " minutes is apporximately " + year + " years and " + day  +
-				" days.");
+		System.out.println(minutes + " minutes is apporximately " + year + " years and " + days  +
+				" days."); // JA
 	}
 }
