@@ -1,3 +1,4 @@
+// JA: You had to print the 100 first pentagonal numbers
 import java.util.*;
 
 public class Problem6_1 {
