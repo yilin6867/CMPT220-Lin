@@ -11,7 +11,7 @@ public class Problem6_17 {
 		for (int i = 1; i <= n; i++) {
 			Random randomNum = new Random();
 			System.out.print(randomNum.nextInt(2));
-			for (int j = 1; j <= 2; j++) {
+			for (int j = 1; j <= n; j++) { // JA
 				System.out.print(randomNum.nextInt(2));
 			}
 			System.out.println();
