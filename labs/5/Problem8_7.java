@@ -2,8 +2,8 @@
 public class Problem8_7 {
 	public static void main(String[] args) {
 		double[][] points = {
-				{-1.5, 4, 2}, {-1, 0, 3}, {-1, -1, -1}, {2, 0.5, 9}, 
-				{3, 1.5, 3}, {3.5, 2, -1}, {4, 1 , 1}, {5.5, 4, -0.5}
+				 {-1, 0, 3}, {-1, -1, -1}, {4, 1 , 1}, {2, 0.5, 9},
+				 {3.5, 2, -1}, {3, 1.5, 3}, {-1.5, 4, 2}, {5.5, 4, -0.5}
 		};
 		int p1 = 0, p2 = 1;
 		double shortestDistance = distance(points[p1][0], points[p1][1], points[p1][2],
