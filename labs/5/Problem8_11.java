@@ -10,40 +10,47 @@ public class Problem8_11 {
 		int k = 7;
 		Integer[] counts = new Integer[9];
 		Integer[] copyCounts = new Integer[counts.length];
+		Integer[] finalCounts = new Integer[counts.length];
 		Arrays.fill(counts, 0);
+		System.arraycopy(counts, 0, copyCounts, 0, counts.length);
 		int copyNum = num;
 		int p = 0;
 		int o = 0;
-		boolean yesReverseCounts = false;
 		List<Integer> reverseCounts = new ArrayList<Integer>();
 		if (num > 0) { 
 			while (num > 0) {
 				if (copyNum >= Math.pow(2, p)) {
-					yesReverseCounts = true;
-					Arrays.fill(counts, 0);
+					System.arraycopy(copyCounts, 0, counts, 0, counts.length);
 					counts[p] = 1;
 					num = copyNum;
 					num = (int) (num - Math.pow(2, p));
+					p++;
+					System.arraycopy(counts, 0, finalCounts, 0, counts.length);
+					if (!(copyNum >= Math.pow(2, p))) {
+						o = 0;
+						copyNum = num;
+					}
 				}
-				else if (num > 0 && !(copyNum >= Math.pow(2, p))){
-					if (copyNum >= Math.pow(2, o)) {
-						counts[o] = 1;
-						num = (int) (num - Math.pow(2, o));
+				else if (copyNum >= Math.pow(2, o)) {
+					System.arraycopy(counts, 0, copyCounts, 0, counts.length);
+					copyCounts[o] = 1;
+					num = (int) (num - Math.pow(2, o));
+					if (num != 0) {
+						num = copyNum;
 					}
 					o++;
+					System.arraycopy(copyCounts, 0, finalCounts, 0, counts.length);
+					if (!(copyNum >= Math.pow(2, o))) {
+						p = 0;
+						System.arraycopy(finalCounts, 0, counts, 0, counts.length);
+					}
 				}
-				p++;
-				System.arraycopy(counts, 0, copyCounts, 0, counts.length);
+				
 			}
-			copyNum = copyNum % 2;
-			counts[0] = copyNum;
-			reverseCounts = Arrays.asList(counts);
+			reverseCounts = Arrays.asList(finalCounts);
 		    Collections.reverse(reverseCounts);
 			for (int j = possibilityOfHeadAndTail.length - 1; j >= 0 ; j--) {
-				if (yesReverseCounts)
-					possibilityOfHeadAndTail[j] = counts[j];
-				else
-					possibilityOfHeadAndTail[j] = reverseCounts.get(j);
+				possibilityOfHeadAndTail[j] = reverseCounts.get(j);
 			}
 		}
 		for (int i = 0; i < possibilityOfHeadAndTail.length; i++) {
