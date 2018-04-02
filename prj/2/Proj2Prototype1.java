@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// http://www.java67.com/2015/08/how-to-load-data-from-csv-file-in-java.html
+
 public class Proj2Prototype1 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
@@ -28,7 +30,6 @@ public class Proj2Prototype1 {
 				System.out.println("The student need " + moneyNeed + " dollar to continue"
 						+ "school");
 			}
-			double classPerformanceGPAScale = student.getClassPerformance() 
 			if (student.getGPA() <= marist.requireGPAMeritScholarship()) {
 				double requireGPA = marist.requireGPAMeritScholarship() - student.getGPA();
 				System.out.println("The student need to increase the GPA by" + requireGPA);
