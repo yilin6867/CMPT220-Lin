@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LocationDB {
+public class LocationDB extends database{
 	private String city;
 	private String state;
 	private int totalHousehold;
@@ -62,30 +62,7 @@ public class LocationDB {
 	private int familyCostOfLiving;
 	public LocationDB() {
 	}
-	public Connection connect() {
-		try {
-			Connection locationDBconnection = 
-					DriverManager.getConnection("jdbc:ucanaccess://"
-					+ "C://Users\\Admin\\Desktop\\CompSci\\CMPT220-Lin\\prj\\2\\LocationData.accdb");
-			return locationDBconnection;
-		}
-        catch(SQLException sqlex){
-        	sqlex.getMessage();
-        	sqlex.getCause();
-            sqlex.printStackTrace();
-            return null;
-        }
-	}
-	public void close(Connection conn) {
-		try {
-			conn.close();
-		}
-	    catch(SQLException sqlex) {
-	        sqlex.getMessage();
-	        sqlex.getCause();
-	        sqlex.printStackTrace();
-	    }
-	}
+	@Override
 	public void pullData(Connection conn, String home) {
 		try {
 			Statement locationDBstatement = conn.createStatement();

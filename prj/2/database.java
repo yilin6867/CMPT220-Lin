@@ -42,6 +42,19 @@ public class database {
 		        sqlex.getMessage();
 		        sqlex.getCause();
 		        sqlex.printStackTrace();
+		}
+	}
+	public void pullData(Connection conn, String home) {
+		try {
+			Statement dbStatement = conn.createStatement();
+			ResultSet dbResultSet = dbStatement.executeQuery("SELECT * FROM [MaristData]");
+			while (dbResultSet.next()) {
+			}
+		}
+		catch(SQLException sqlex) {
+		        sqlex.getMessage();
+		        sqlex.getCause();
+		        sqlex.printStackTrace();
 		    }
 		}
 }

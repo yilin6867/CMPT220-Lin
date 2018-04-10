@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MaristDB {
+public class MaristDB extends database{
 	private long tuition;
 	private long roomAndBoard;
 	private long bookAndSupplies;
@@ -13,30 +13,7 @@ public class MaristDB {
 	
 	public MaristDB() {
 	}
-	public Connection connect() {
-		try {
-			Connection maristDBconnection = 
-					DriverManager.getConnection("jdbc:ucanaccess://"
-							+ "C://Users\\Admin\\Desktop\\CompSci\\CMPT220-Lin\\prj\\2\\Marist.accdb");
-			return maristDBconnection;
-		}
-        catch(SQLException sqlex){
-        	sqlex.getMessage();
-        	sqlex.getCause();
-            sqlex.printStackTrace();
-            return null;
-        }
-	}
-	public void close(Connection conn) {
-		try {
-			conn.close();
-		}
-	    catch(SQLException sqlex) {
-	        sqlex.getMessage();
-	        sqlex.getCause();
-	        sqlex.printStackTrace();
-	    }
-	}
+	@Override
 	public void pullData(Connection conn) {
 		try {
 			Statement maristDBstatement = conn.createStatement();

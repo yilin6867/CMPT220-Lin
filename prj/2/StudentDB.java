@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class StudentDB {
+public class StudentDB extends database{
 	private ArrayList<Integer> ids = new ArrayList<Integer>();
 	private ArrayList<String> firstName = new ArrayList<String>();
 	private ArrayList<String> lastName = new ArrayList<String>();
@@ -23,31 +23,7 @@ public class StudentDB {
 	private ArrayList<String> familyStatus = new ArrayList<String>();
 	public StudentDB() {
 	}
-	public Connection connect() {
-		try {
-			Connection studentDBconnection = 
-					DriverManager.getConnection("jdbc:ucanaccess://"
-							+ "C://Users\\Admin\\Desktop\\CompSci\\CMPT220-Lin\\prj\\2\\Student.accdb");
-			return studentDBconnection;
-		}
-        catch(SQLException sqlex){
-        	sqlex.getMessage();
-        	sqlex.getCause();
-            sqlex.printStackTrace();
-            return null;
-        }
-		
-	}
-	public void close(Connection conn) {
-		try {
-			conn.close();
-		}
-	    catch(SQLException sqlex) {
-	        sqlex.getMessage();
-	        sqlex.getCause();
-	        sqlex.printStackTrace();
-	    }
-	}
+	@Override
 	public void pullData(Connection conn) {
 		try {
 			Statement studentDBstatement = conn.createStatement();
