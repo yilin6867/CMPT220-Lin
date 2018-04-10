@@ -20,7 +20,7 @@ public class StudentDB {
 	private ArrayList<Integer> thirdSch = new ArrayList<Integer>();
 	private ArrayList<Integer> famCont = new ArrayList<Integer>();
 	private ArrayList<String> home = new ArrayList<String>();
-	private ArrayList<String> studentStatus = new ArrayList<String>();
+	private ArrayList<String> familyStatus = new ArrayList<String>();
 	public StudentDB() {
 	}
 	public Connection connect() {
@@ -72,7 +72,7 @@ public class StudentDB {
 				this.thirdSch.add(studentResultSet.getInt("THIRD_PARTY_SCHOLARSHIP"));
 				this.famCont.add(studentResultSet.getInt("FAMILY_CONTRIBUTION"));
 				this.home.add(studentResultSet.getString("CITY"));
-				this.studentStatus.add(studentResultSet.getString("FAMILY_STATUS"));
+				this.familyStatus.add(studentResultSet.getString("FAMILY_STATUS"));
 			}
 		}
 	    catch(SQLException sqlex) {
@@ -135,7 +135,7 @@ public class StudentDB {
 	public ArrayList<String> getHome() {
 		return home;
 	}
-	public ArrayList<String> getStudentStatus() {
-		return studentStatus;
+	public ArrayList<String> getFamilyStatus() {
+		return familyStatus;
 	}
 }

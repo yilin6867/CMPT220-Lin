@@ -59,6 +59,7 @@ public class LocationDB {
 	private double more200kFamiliesPer;
 	private double more200kMarriedCouplePer;
 	private double more200kNonfamilyPer;
+	private int familyCostOfLiving;
 	public LocationDB() {
 	}
 	public Connection connect() {
@@ -144,7 +145,9 @@ public class LocationDB {
 				this.more200kHouseholdPer = locationResultSet.getDouble("Households; Estimate; $200,000 or more");
 				this.more200kFamiliesPer = locationResultSet.getDouble("Families; Estimate; $200,000 or more");
 				this.more200kMarriedCouplePer = locationResultSet.getDouble("Married-couple families; Estimate; $200,000 or more");
-				this.more200kNonfamilyPer = locationResultSet.getDouble("Nonfamily households; Estimate; $200,000 or more");			}
+				this.more200kNonfamilyPer = locationResultSet.getDouble("Nonfamily households; Estimate; $200,000 or more");
+				this.familyCostOfLiving = locationResultSet.getInt("FAMILY_COST_OF_LIVING");
+			}
 		}
 	    catch(SQLException sqlex) {
 	        sqlex.getMessage();
@@ -313,6 +316,9 @@ public class LocationDB {
 	}
 	public double getMore200kNonfamilyPer() {
 		return more200kNonfamilyPer;
+	}
+	public int getFamilyCostOfLiving() {
+		return familyCostOfLiving;
 	}
 	
 }
