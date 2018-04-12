@@ -46,5 +46,9 @@ public class Account {
 	public void deposit(double amount) {
 		balance = balance + amount;
 	}
-	
+	public String toString() {
+		return "Account: " + this.getId() + "\n" + "Date Created " + 
+				this.getDateCreated() + "\n" + "Balance: " + this.getBalance() + "\n" +
+				"Annual Interest Rate: " + this.getAnnualInterestRate();
+	}
 }

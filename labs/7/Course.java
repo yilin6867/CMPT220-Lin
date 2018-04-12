@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Course {
+public class Course implements Cloneable{
 	private String courseName;
 	private ArrayList<String> students = new ArrayList<String>(100);
 	private int numberOfStudents;
@@ -40,5 +40,17 @@ public class Course {
 		newStudentsList.removeAll(this.students);
 		this.students = newStudentsList;
 		this.numberOfStudents = 0;
+	}
+	public Object clone() {
+		try {
+			Course courseClone = (Course)super.clone();
+			courseClone.students = (ArrayList<String>)this.students;
+			return courseClone;
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 }

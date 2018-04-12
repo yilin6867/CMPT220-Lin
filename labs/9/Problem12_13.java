@@ -21,6 +21,7 @@ public class Problem12_13 {
 				String fileWord = inputWord.next();
 				words.add(fileWord);
 			}
+			// use function split(" ")
 			Scanner inputLine = new Scanner(targetFile);
 			while (inputLine.hasNextLine()) {
 				String fileLine = inputLine.nextLine();
