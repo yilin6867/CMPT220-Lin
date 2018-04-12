@@ -1,3 +1,4 @@
+// JA: This class does not compile
 
 public class Problem11_3 {
 	public static void main(String[] args) {
