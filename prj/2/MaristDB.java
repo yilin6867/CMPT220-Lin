@@ -4,14 +4,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MaristDB extends database{
+public class MaristDB extends Database{
 	private long tuition;
 	private long roomAndBoard;
 	private long bookAndSupplies;
 	private long personalMiscellaneous;
 	private double minGPA;
 	
-	public MaristDB() {
+	public MaristDB() throws SQLException {
+		Connection maristDBConnection = this.connect();
+		this.pullData(maristDBConnection);
+		maristDBConnection.close();
 	}
 	@Override
 	public void pullData(Connection conn) {

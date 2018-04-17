@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LocationDB extends database{
+public class LocationDB extends Database{
 	private String city;
 	private String state;
 	private int totalHousehold;

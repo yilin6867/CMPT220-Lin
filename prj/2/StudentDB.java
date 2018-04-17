@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class StudentDB extends database{
+public class StudentDB extends Database{
 	private ArrayList<Integer> ids = new ArrayList<Integer>();
 	private ArrayList<String> firstName = new ArrayList<String>();
 	private ArrayList<String> lastName = new ArrayList<String>();
@@ -21,7 +21,10 @@ public class StudentDB extends database{
 	private ArrayList<Integer> famCont = new ArrayList<Integer>();
 	private ArrayList<String> home = new ArrayList<String>();
 	private ArrayList<String> familyStatus = new ArrayList<String>();
-	public StudentDB() {
+	public StudentDB() throws SQLException {
+		Connection studentDBConnection = this.connect();
+		this.pullData(studentDBConnection);
+		studentDBConnection.close();
 	}
 	@Override
 	public void pullData(Connection conn) {
@@ -113,5 +116,13 @@ public class StudentDB extends database{
 	}
 	public ArrayList<String> getFamilyStatus() {
 		return familyStatus;
+	}
+	public String newToString(int i) {
+		return ("|  " 
+				+ String.format("%s",this.getIds().get(i)) + "\t|" 
+				+ String.format("%s",this.getFirstName().get(i) + this.getLastName().get(i)) + "\t\t|" 
+				+ String.format("%s",this.getGpa().get(i)) + "\t|" 
+				+ String.format("%s",this.getHome().get(i)) + "\t\t|" 
+				+ String.format("%10s",this.getFamilyStatus().get(i)) + "\t\t|");
 	}
 }

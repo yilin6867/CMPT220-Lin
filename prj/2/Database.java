@@ -4,8 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class database {
-	public database() {
+public class Database {
+	public Database() {
 	}
 	public Connection connect() {
 		try {
