@@ -81,8 +81,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") + 
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") + 
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -110,8 +111,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") + 
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") + 
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -138,8 +140,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -166,8 +169,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -193,8 +197,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -220,7 +225,7 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents")+
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents")+
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
@@ -247,8 +252,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -272,8 +278,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -296,8 +303,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -319,8 +327,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -354,8 +363,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -383,8 +393,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -411,8 +422,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -439,8 +451,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -466,8 +479,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -493,8 +507,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -519,8 +534,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -544,8 +560,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -568,8 +585,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -591,8 +609,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -626,8 +645,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -655,8 +675,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -683,8 +704,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -711,8 +733,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") + 
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") + 
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -738,8 +761,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -765,8 +789,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -791,8 +816,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -816,8 +842,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -840,8 +867,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
@@ -863,8 +891,9 @@ public class Proj2Prototype3 {
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
 			checkGPA(preditGPARound, marist);
-			System.out.println(String.format("|%9s|", "\t\t   ") + String.format("%10s|", "Percents") +
+			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
+			System.out.println("|------------------------------------------------|");
 			for (int j = 0 ; j < possibilityList.length; j++) {
 				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
 				if (moneyContribute > moneyNeed) {
