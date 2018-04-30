@@ -1,4 +1,4 @@
-
+// JA: Where is the IllegalTriangleException class?
 public class Triangle extends GeometricObject implements Colorable{
 	private double side1 = 3.0;
 	private double side2 = 4.0;
