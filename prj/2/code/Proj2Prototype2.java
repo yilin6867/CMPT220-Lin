@@ -1,3 +1,4 @@
+package code;
 import java.sql.*;
 
 public class Proj2Prototype2 {

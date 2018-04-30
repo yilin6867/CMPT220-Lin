@@ -1,3 +1,4 @@
+package code;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -121,7 +122,7 @@ public class StudentDB extends Database{
 		return ("|  " 
 				+ String.format("%s",this.getIds().get(i)) + "\t|" 
 				+ String.format("%s",this.getFirstName().get(i) + this.getLastName().get(i)) + "\t\t|" 
-				+ String.format("%s",this.getGpa().get(i)) + "\t|" 
+				+ String.format("%7s|",this.getGpa().get(i))
 				+ String.format("%s",this.getHome().get(i)) + "\t\t|" 
 				+ String.format("%10s",this.getFamilyStatus().get(i)) + "\t\t|");
 	}

@@ -1,3 +1,4 @@
+package code;
 
 class Marist {
 	private int tuition;

@@ -1,3 +1,4 @@
+package code;
 class Student {
 	private String name;
 	private int ID;
