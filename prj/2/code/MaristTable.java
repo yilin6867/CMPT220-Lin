@@ -5,14 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MaristDB extends Database{
+public class MaristTable extends Database{
 	private long tuition;
 	private long roomAndBoard;
 	private long bookAndSupplies;
 	private long personalMiscellaneous;
 	private double minGPA;
 	
-	public MaristDB() throws SQLException {
+	public MaristTable() throws SQLException {
 		Connection maristDBConnection = this.connect();
 		this.pullData(maristDBConnection);
 		maristDBConnection.close();
@@ -29,6 +29,7 @@ public class MaristDB extends Database{
 				this.personalMiscellaneous = maristResultSet.getLong("PERSONAL_AND_MISCELLANEOUS");
 				this.minGPA = maristResultSet.getDouble("MINIMUM_GPA");
 			}
+			conn.close();
 		}
 	    catch(SQLException sqlex) {
 	        sqlex.getMessage();

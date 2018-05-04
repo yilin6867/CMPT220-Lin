@@ -1,24 +1,24 @@
 package code;
 import java.sql.*;
 
-public class Proj2Prototype3 {
+public class StudentRetention {
 	public static void main(String[] args) throws SQLException {
 		//initialize variable
 		double preditGPARound;
-		long studentMoney;
-		long costOfAttanance;
-		long moneyNeed;
+		float studentMoney;
+		float costOfAttanance;
+		float moneyNeed;
 		
 		//create instance of marist data table
-		MaristDB marist = new MaristDB();
+		MaristTable marist = new MaristTable();
 		
 		//create instance of location data table
-		LocationDB location = new LocationDB();
+		LocationTable location = new LocationTable();
 		//built connection to location data table
 		Connection locationConnection = location.connect();
 		
 		//create instance of student data table
-		StudentDB student = new StudentDB();
+		StudentTable student = new StudentTable();
 		
 		//use for loop to print the information and prediction for each student
 		for (int i = 0; i < student.getIds().size(); i++) {
@@ -38,19 +38,20 @@ public class Proj2Prototype3 {
 			// override toString to print each student data
 			System.out.print(student.newToString(i));
 			moneyNeed = costOfAttanance - studentMoney;
+			if (moneyNeed < 0)
+				moneyNeed = 0;
 			preditGPARound = predictGPA(i, student);
 			//conduct prediction
-			if (studentMoney < costOfAttanance) {
-				System.out.print(String.format("$%12s|", moneyNeed));
-				checkFamilyStatus(student, i, location, costOfAttanance, moneyNeed, preditGPARound,
-						marist);
-			}
+			System.out.print(String.format("$%12s|", moneyNeed));
+			checkFamilyStatus(student, i, location, costOfAttanance, moneyNeed, preditGPARound,
+					marist);
 			System.out.println();
 		}
+		locationConnection.close();
 	}
 	// check whether the student is dependent, married, single
-	static void checkFamilyStatus(StudentDB student, int i, LocationDB location, long costOfAttanance, 
-								long moneyNeed, double preditGPARound, MaristDB marist) {
+	static void checkFamilyStatus(StudentTable student, int i, LocationTable location, float costOfAttanance, 
+								float moneyNeed, double preditGPARound, MaristTable marist) {
 		if (student.getFamilyStatus().get(i).equals("Dependent")) {
 			dependentFamilyContribution(student, location, costOfAttanance, moneyNeed, i,
 					preditGPARound, marist);
@@ -65,8 +66,8 @@ public class Proj2Prototype3 {
 		}
 	}
 	//for student who is dependent
-	static void dependentFamilyContribution(StudentDB student, LocationDB location, 
-			long costOfAttanance, long moneyNeed, int i, double preditGPARound, MaristDB marist) {
+	static void dependentFamilyContribution(StudentTable student, LocationTable location, float costOfAttanance,
+			float moneyNeed, int i, double preditGPARound, MaristTable marist) {
 		double possibilityRound;
 		double possibility = 0;
 		double moneyContribute;
@@ -358,8 +359,8 @@ public class Proj2Prototype3 {
 		}		
 	}
 	//for student who is married
-	static void marriedFamilyContribution(StudentDB student, LocationDB location, long costOfAttanance,
-			long moneyNeed, int i, double preditGPARound, MaristDB marist) {
+	static void marriedFamilyContribution(StudentTable student, LocationTable location, float costOfAttanance,
+			float moneyNeed, int i, double preditGPARound, MaristTable marist) {
 		double possibilityRound;
 		double possibility = 0;
 		double moneyContribute;
@@ -651,8 +652,8 @@ public class Proj2Prototype3 {
 		}
 	}
 	//for student who is single
-	static void singleFamilyContriubution(StudentDB student, LocationDB location, long costOfAttanance,
-			long moneyNeed, int i, double preditGPARound, MaristDB marist) {
+	static void singleFamilyContriubution(StudentTable student, LocationTable location, float costOfAttanance,
+			float moneyNeed, int i, double preditGPARound, MaristTable marist) {
 		double possibilityRound;
 		double possibility = 0;
 		double moneyContribute;
@@ -944,7 +945,7 @@ public class Proj2Prototype3 {
 		}
 	}
 	//calculate the gpa at the end of the semester
-	static double predictGPA(int i, StudentDB student) {
+	static double predictGPA(int i, StudentTable student) {
 		double fourScalecourse1GPA;
 		double fourScalecourse2GPA;
 		double fourScalecourse3GPA;
@@ -955,11 +956,11 @@ public class Proj2Prototype3 {
 		double preditGPA;
 		double preditGPARound;
 		double preditGPAThisSemester;
-		fourScalecourse1GPA = getGrade(student.getCourse1Grade().get(i));
-		fourScalecourse2GPA = getGrade(student.getCourse2Grade().get(i));
-		fourScalecourse3GPA = getGrade(student.getCourse3Grade().get(i));
-		fourScalecourse4GPA = getGrade(student.getCourse4Grade().get(i));
-		fourScalecourse5GPA = getGrade(student.getCourse5Grade().get(i));
+		fourScalecourse1GPA = getGPA4PointScale(student.getCourse1Grade().get(i));
+		fourScalecourse2GPA = getGPA4PointScale(student.getCourse2Grade().get(i));
+		fourScalecourse3GPA = getGPA4PointScale(student.getCourse3Grade().get(i));
+		fourScalecourse4GPA = getGPA4PointScale(student.getCourse4Grade().get(i));
+		fourScalecourse5GPA = getGPA4PointScale(student.getCourse5Grade().get(i));
 		sumGPA = (fourScalecourse1GPA * student.getCourse1Credit().get(i)) +
 				(fourScalecourse2GPA * student.getCourse2Credit().get(i)) +
 				(fourScalecourse3GPA * student.getCourse3Credit().get(i)) +
@@ -979,7 +980,7 @@ public class Proj2Prototype3 {
 		return preditGPARound;
 	}
 	//check if gpa is below C
-	public static void checkGPA(double preditGPARound, MaristDB marist) {
+	static void checkGPA(double preditGPARound, MaristTable marist) {
 		double requireGPA;
 		double requireGPARound;
 		if (preditGPARound <= marist.getMinGPA()) {
@@ -997,7 +998,7 @@ public class Proj2Prototype3 {
 		}
 	}
 	//grade 100 scale to 4 point scale
-	public static double getGrade(int grade) {
+	static double getGPA4PointScale(int grade) {
 		if (grade >= 94 && grade <= 100) {
 			return 4.0;
 		}

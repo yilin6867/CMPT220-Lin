@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LocationDB extends Database{
+public class LocationTable extends Database{
 	private String city;
 	private String state;
 	private int totalHousehold;
@@ -61,9 +61,8 @@ public class LocationDB extends Database{
 	private double more200kMarriedCouplePer;
 	private double more200kNonfamilyPer;
 	private int familyCostOfLiving;
-	public LocationDB() {
+	public LocationTable() {
 	}
-	@Override
 	public void pullData(Connection conn, String home) {
 		try {
 			Statement locationDBstatement = conn.createStatement();

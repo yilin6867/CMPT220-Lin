@@ -1,105 +1,87 @@
 package code;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystems;
-import java.nio.file.Files; 
-import java.nio.file.Path; 
-import java.nio.file.Paths; 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-// http://www.java67.com/2015/08/how-to-load-data-from-csv-file-in-java.html
+import java.sql.*;
 
 public class Proj2Prototype1 {
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
+		//Scanner input = new Scanner(System.in);
 		//System.out.print("Please enter the student's name to be calculate for retention rate: ");
 		//String studentName = input.next();
-		csvReaderInJava();
+		msAccessDatabaseConnectionInJava8();
 	}
-	private static void csvReaderInJava() {
-		List<Student> students = readStudentFromCSV("Student.csv");
-		List<Marist> maristData = readMaristFromCSV("Marist.csv");
-		// let's print all the person read from CSV file 
-		for (int i = 0; i < students.size(); i++) {
-			Student student = students.get(i);
-			Marist marist = maristData.get(0);
-			if (student.totalScholarship() < marist.costOfAttendent()) {
-				int moneyNeed = marist.costOfAttendent() - student.totalScholarship();
-				System.out.println("The student need " + moneyNeed + " dollar to continue"
-						+ "school");
-			}
-			if (student.getGPA() <= marist.requireGPAMeritScholarship()) {
-				double requireGPA = marist.requireGPAMeritScholarship() - student.getGPA();
-				System.out.println("The student need to increase the GPA by" + requireGPA);
-			}
-		}
-	}
-	
-	private static List<Student> readStudentFromCSV(String studentFileName) { 
-		List<Student> students = new ArrayList<>();
-		Path pathToStudentFile = FileSystems.getDefault().getPath("2", studentFileName);
-		// create an instance of BufferedReader 
-		// using try with resource, Java 7 feature to close resources 
-		try {
-			BufferedReader studentfile = Files.newBufferedReader(pathToStudentFile,
-					StandardCharsets.US_ASCII);
-			// read the first line from the text file 
-			String studentFileLine = studentfile.readLine();
-			// loop until all lines are read
-			while (studentFileLine != null) { 
-				// use string.split to load a string array with the values from 
-				// each line of // the file, using a comma as the delimiter
-				String[] attributes = studentFileLine.split(",");
-				Student student = createStudent(attributes);
-				// adding book into ArrayList
-				students.add(student); 
-				// read next line before looping 
-				// if end of file reached, line would be null
-				studentFileLine = studentfile.readLine(); 
-				}
-			} 
-		catch (IOException ioe) { 
-			ioe.printStackTrace(); 
-		}
-		return students; 
-	}
-	private static List<Marist> readMaristFromCSV(String maristFileName) {
-		List<Marist> maristData = new ArrayList<>();	
-		Path pathToMaristFile = FileSystems.getDefault().getPath("2", maristFileName);
-		try {
-			BufferedReader maristCollegeFile = Files.newBufferedReader(pathToMaristFile,
-					StandardCharsets.US_ASCII);
-			String maristFileLine = maristCollegeFile.readLine();
-			while (maristFileLine != null) {
-				String[] attributes = maristFileLine.split(",");
-				Marist marist = createMarist(attributes);
-				maristData.add(marist);
-			}
-		}
-		catch (IOException ioe) { 
-			ioe.printStackTrace(); 
-		}
-		return maristData; 
-	}
-	private static Student createStudent(String[] metadata){
-		String name = metadata[0]; 
-		int ID = Integer.parseInt(metadata[1]);
-		double GPA = Double.parseDouble(metadata[2]);
-		int awardScholarship = Integer.parseInt(metadata[3]);
-		int thirdPartyScholarship = Integer.parseInt(metadata[4]);
-		int classPerformance = Integer.parseInt(metadata[5]);
-		int familyContribution = Integer.parseInt(metadata[6]);
-		return new Student(name, ID, GPA, awardScholarship, thirdPartyScholarship, classPerformance,
-				familyContribution); 
-		}
-	private static Marist createMarist(String[] metadata){
-		int tuition = Integer.parseInt(metadata[0]);
-		int roomAndBoard = Integer.parseInt(metadata[1]);
-		int bookAndSupplies = Integer.parseInt(metadata[2]);
-		int personalMiscellaneous = Integer.parseInt(metadata[3]);
-		return new Marist(tuition, roomAndBoard, bookAndSupplies, personalMiscellaneous);
-		}
+	public static void msAccessDatabaseConnectionInJava8() {
+		Connection maristDBconnection = null;
+		Connection studentDBconnection = null;
+		Statement maristDBstatement = null;
+		Statement studentDBstatement = null;
+		ResultSet maristResultSet = null;
+		ResultSet studentResultSet = null;
+        // Step 1: Loading or registering Oracle JDBC driver class
+        try {
+        	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+        }
+        catch(ClassNotFoundException cnfex) {
+
+            System.out.println("Problem in loading or "
+                    + "registering MS Access JDBC driver");
+            cnfex.printStackTrace();
+        }
+
+        // Step 2: Opening database connection
+        try {
+
+            //String maristDB = "C:/Users/Admin/Desktop/CompSci/CMPT220-Lin/prj/2/Marist.accdb";
+            String studentDB = "C:/Users/Admin/Desktop/CompSci/CMPT220-Lin/prj/2/Student.accdb";
+            //String maristDBurl = "jdbc:ucanaccess://" + maristDB;
+            String studentDBurl = "jdbc:ucanaccess://" + studentDB;
+
+            // Step 2.A: Create and get connection using DriverManager class
+            //maristDBconnection = DriverManager.getConnection(maristDBurl);
+            studentDBconnection = DriverManager.getConnection(studentDBurl);
+
+            // Step 2.B: Creating JDBC Statement 
+            //maristDBstatement = maristDBconnection.createStatement();
+            studentDBstatement = studentDBconnection.createStatement();
+
+            // Step 2.C: Executing SQL & retrieve data into ResultSet
+            //maristResultSet = maristDBstatement.executeQuery("SELECT * FROM MARIST");
+            studentResultSet = studentDBstatement.executeQuery("SELECT * FROM STUDENT");
+            
+            // processing returned data and printing into console
+            while(studentResultSet.next()) {
+                System.out.println(studentResultSet.getInt(1) + "\t" + 
+                		studentResultSet.getString(2) + "\t" + 
+                		studentResultSet.getString(3) + "\t" +
+                		studentResultSet.getInt(4) + "\t" +
+                		studentResultSet.getInt(5) + "\t" +
+                		studentResultSet.getInt(6) + "\t" +
+                		studentResultSet.getInt(7) + "\t" +
+                		studentResultSet.getInt(8));
+            }
+        }
+        catch(SQLException sqlex){
+            sqlex.printStackTrace();
+        }
+        finally {
+
+            // Step 3: Closing database connection
+            try {
+				if(studentDBconnection != null) {
+
+                    // cleanup resources, once after processing
+					//maristResultSet.close();
+					studentResultSet.close();
+                    //maristDBstatement.close();
+                    studentDBstatement.close();
+
+                    // and then finally close connection
+                    //maristDBconnection.close();
+                    studentDBconnection.close();
+                }
+            }
+            catch (SQLException sqlex) {
+                sqlex.printStackTrace();
+            }
+        }
+    }
+
 } 
