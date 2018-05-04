@@ -1,0 +1,1 @@
+If Importing data from DBF does not work, please import data from the excel files.
