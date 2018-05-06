@@ -24,11 +24,11 @@ public class StudentRetention {
 		for (int i = 0; i < student.getIds().size(); i++) {
 			//print the table
 			System.out.println(String.format("|ID\t\t| Name\t\t\t| GPA\t| Where Student is From | %s\t"	+ 
-					"| Amount Need | Contribute Possibility" + " | GPA Need | " + "Predicted GPA |" + 
+					"| Amount Need | Contribute Possibility" + " | GPA Need | " + "Predicted GPA | Retention |" + 
 					"\n" +
 					"|-----------------------------------------------------------------------------" +
 					"------------------------------------------------------------------------------" +
-					"------|",
+					"------------------|",
 					"Student Status"));
 			location.pullData(locationConnection, student.getHome().get(i));
 			studentMoney = student.getAwardSch().get(i) + student.getThirdSch().get(i)
@@ -71,6 +71,7 @@ public class StudentRetention {
 		double possibilityRound;
 		double possibility = 0;
 		double moneyContribute;
+		String retention;
 		//for family income less that 10000
 		if (location.getFamilyCostOfLiving() < 10000) {
 			double[] possibilityList = 
@@ -88,19 +89,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") + 
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 15000
 		else if (location.getFamilyCostOfLiving() < 15000) {
@@ -119,19 +114,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") + 
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 25000
 		else if (location.getFamilyCostOfLiving() < 25000) {
@@ -149,19 +138,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 35000
 		else if (location.getFamilyCostOfLiving() < 35000) {
@@ -179,19 +162,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 50000
 		else if (location.getFamilyCostOfLiving() < 50000) {
@@ -208,19 +185,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 75000
 		else if (location.getFamilyCostOfLiving() < 75000) {
@@ -237,19 +208,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents")+
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 100000
 		else if (location.getFamilyCostOfLiving() < 100000) {
@@ -265,19 +230,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 150000
 		else if (location.getFamilyCostOfLiving() < 150000) { 
@@ -292,19 +251,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 200000
 		else if (location.getFamilyCostOfLiving() < 200000) {
@@ -318,19 +271,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 200000+
 		else {
@@ -343,19 +290,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}		
 	}
 	//for student who is married
@@ -364,6 +305,7 @@ public class StudentRetention {
 		double possibilityRound;
 		double possibility = 0;
 		double moneyContribute;
+		String retention;
 		//for family income less that 10000
 		if (location.getFamilyCostOfLiving() < 10000) {
 			double[] possibilityList = 
@@ -381,19 +323,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 15000
 		else if (location.getFamilyCostOfLiving() < 15000) {
@@ -412,19 +348,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 25000
 		else if (location.getFamilyCostOfLiving() < 25000) {
@@ -442,19 +372,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 35000
 		else if (location.getFamilyCostOfLiving() < 35000) {
@@ -472,19 +396,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 50000
 		else if (location.getFamilyCostOfLiving() < 50000) {
@@ -501,19 +419,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 75000
 		else if (location.getFamilyCostOfLiving() < 75000) {
@@ -530,19 +442,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 100000
 		else if (location.getFamilyCostOfLiving() < 100000) {
@@ -558,19 +464,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 150000
 		else if (location.getFamilyCostOfLiving() < 150000) { 
@@ -585,19 +485,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 200000
 		else if (location.getFamilyCostOfLiving() < 200000) {
@@ -611,19 +505,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 200000+
 		else {
@@ -636,19 +524,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 	}
 	//for student who is single
@@ -657,6 +539,7 @@ public class StudentRetention {
 		double possibilityRound;
 		double possibility = 0;
 		double moneyContribute;
+		String retention;
 		//for family income less that 10000
 		if (location.getFamilyCostOfLiving() < 10000) {
 			double[] possibilityList = 
@@ -674,19 +557,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 15000
 		else if (location.getFamilyCostOfLiving() < 15000) {
@@ -705,19 +582,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 25000
 		else if (location.getFamilyCostOfLiving() < 25000) {
@@ -735,19 +606,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 35000
 		else if (location.getFamilyCostOfLiving() < 35000) {
@@ -765,19 +630,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") + 
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 50000
 		else if (location.getFamilyCostOfLiving() < 50000) {
@@ -794,19 +653,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less that 75000
 		else if (location.getFamilyCostOfLiving() < 75000) {
@@ -823,19 +676,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less than 100000
 		else if (location.getFamilyCostOfLiving() < 100000) {
@@ -851,19 +698,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less than 150000
 		else if (location.getFamilyCostOfLiving() < 150000) { 
@@ -878,19 +719,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less than 200000
 		else if (location.getFamilyCostOfLiving() < 200000) {
@@ -904,19 +739,13 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
+			
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 		//for family income less than 200000+
 		else {
@@ -929,19 +758,12 @@ public class StudentRetention {
 			}
 			possibilityRound = Math.round(possibility * 100); 
 			System.out.print(String.format("%24s|",possibilityRound + "%"));
-			checkGPA(preditGPARound, marist);
+			double gpa = checkGPA(preditGPARound, marist);
+			checkRetention(gpa, moneyNeed);
 			System.out.println(String.format("|%9s|", "Income Range      ") + String.format("%10s|", "Percents") +
 					String.format("%15s|", "Ammount Contribute"));
 			System.out.println("|------------------------------------------------|");
-			for (int j = 0 ; j < possibilityList.length; j++) {
-				moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
-				if (moneyContribute > moneyNeed) {
-					moneyContribute = moneyNeed;
-				}
-				System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
-						String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
-				System.out.println(String.format("$%17s|", moneyContribute));
-			}
+			printTableTwo(possibilityList, moneyLevel, moneyNeed, location);
 		}
 	}
 	//calculate the gpa at the end of the semester
@@ -980,21 +802,21 @@ public class StudentRetention {
 		return preditGPARound;
 	}
 	//check if gpa is below C
-	static void checkGPA(double preditGPARound, MaristTable marist) {
+	static double checkGPA(double preditGPARound, MaristTable marist) {
 		double requireGPA;
 		double requireGPARound;
 		if (preditGPARound <= marist.getMinGPA()) {
 			requireGPA = marist.getMinGPA() - preditGPARound;
 			requireGPARound = Math.round(requireGPA * 100.0) / 100.0;
 			System.out.print(String.format("%10s|", requireGPARound));
-			System.out.println(String.format("%15s|", preditGPARound));
-			System.out.println();
+			System.out.print(String.format("%15s|", preditGPARound));
+			return requireGPARound;
 		}
 		else {
 			requireGPARound = 0;
 			System.out.print(String.format("%10s|", requireGPARound));
-			System.out.println(String.format("%15s|", preditGPARound));
-			System.out.println();
+			System.out.print(String.format("%15s|", preditGPARound));
+			return requireGPARound;
 		}
 	}
 	//grade 100 scale to 4 point scale
@@ -1031,6 +853,31 @@ public class StudentRetention {
 		}
 		else {
 			return 0.0;
+		}
+	}
+	public static void checkRetention(double gpa, float moneyNeed) {
+		String retention;
+		if (moneyNeed == 0 && gpa == 0) {
+			retention = "YES";
+			System.out.println(String.format("%11s|", retention));
+			System.out.println();
+		}
+		else {
+			retention = "NO";
+			System.out.println(String.format("%11s|", retention));
+			System.out.println();
+		}
+	}
+	public static void printTableTwo(double[] possibilityList, double[] moneyLevel,
+			double moneyNeed, LocationTable location) {
+		for (int j = 0 ; j < possibilityList.length; j++) {
+			double moneyContribute = moneyLevel[j] - location.getFamilyCostOfLiving();
+			if (moneyContribute > moneyNeed) {
+				moneyContribute = moneyNeed;
+			}
+			System.out.print(String.format("|Less Than %8s|", moneyLevel[j]) + 
+					String.format("%10s|", Math.round((possibilityList[j]* 100) * 10) / 10.0));
+			System.out.println(String.format("$%17s|", moneyContribute));
 		}
 	}
 }
